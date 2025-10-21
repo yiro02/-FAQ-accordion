@@ -1,8 +1,20 @@
 {
   "name": "fag-accordion",
-  "private": true,
   "version": "0.0.0",
+  "private": true,
+  "description": "This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.",
+  "homepage": "https://github.com/yiro02/FAQ-Accordion#readme",
+  "bugs": {
+    "url": "https://github.com/yiro02/FAQ-Accordion/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yiro02/FAQ-Accordion.git"
+  },
+  "license": "ISC",
+  "author": "",
   "type": "module",
+  "main": "eslint.config.js",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
@@ -10,10 +22,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@tailwindcss/vite": "^4.1.14",
+    "@tailwindcss/vite": "^4.1.15",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
-    "tailwindcss": "^4.1.14"
+    "tailwindcss": "^4.1.15"
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",
