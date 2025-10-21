@@ -1,4 +1,4 @@
-# Fag-Acorde-n
+# Fag Accordion.
 <img width="1440" height="1056" alt="image" src="https://github.com/user-attachments/assets/0afaa859-cf74-4d3a-9dc1-a8e06a11b18c" />
 
 - Your challenge is to build out this FAQ accordion and get it looking as close to the design as possible.
