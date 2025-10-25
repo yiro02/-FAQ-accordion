@@ -3,81 +3,99 @@ import background from "./assets/background-pattern-desktop.svg";
 import iconstar from "./assets/icon-star.svg";
 import iconminus from "./assets/icon-minus.svg";
 import iconplus from "./assets/icon-plus.svg";
+import { useState } from "react";
 
+const App = () => {
+  const [openItem, setOpenItem] = useState<string | null>(null);
 
-function App() {
-  const proudOfThisFunc = () => {
-    console.log("🎉");
+  const handleItemClick = (value: string) => {
+    setOpenItem(openItem === value ? null : value);
   };
 
+  const faqs = [
+    {
+      id: "item-1",
+      question: "What is Frontend Mentor, and how will it help me?",
+      answer:
+        "Frontend Mentor offers realistic coding challenges to help developers improve their frontend coding skills with projects in HTML, CSS, and JavaScript. It's suitable for all levels and ideal for portfolio building.",
+    },
+    {
+      id: "item-2",
+      question: "Is Frontend Mentor free?",
+      answer:
+        "Yes, Frontend Mentor offers both free and premium coding challenges, with the free option providing access to a range of projects suitable for all skill levels.",
+    },
+    {
+      id: "item-3",
+      question: "Can I use Frontend Mentor projects in my portfolio?",
+      answer:
+        "Yes, you can use any of your completed Frontend Mentor projects in your portfolio to showcase your skills.",
+    },
+
+    {
+      id: "item-4",
+      question: "How can I get help if I'm stuck on a challenge?",
+      answer:
+        "The best place to get help is the Frontend Mentor community forum, where other developers share advice and feedback.",
+    },
+  ];
+
   return (
-    /*✅ contenedor-principal */
-    <main>
-      {/*✅contenedor secundario*/}
-      <div className="bg-Purple max-w-full h-screen">
-        {/* IMAGEN-HEAD */}
-        <img src={background} alt="imagen de la cabezera"
-          width={1600} />
+    <div
+      className="bg-Purple-100 min-h-[1220px] grid md:grid-cols-3 
+      lg:grid-cols-none items-center  gap-2 p-[3] relative "
+    >
+      {/* Imagen de fondo */}
+      <img
+        src={background}
+        alt="Background header"
+        className="absolute top-0 left-0 w-full h-[250px] object-cover 
+         "
+      />
 
-        <div className="flex justify-center-safe relative items-center top-[-120px]  ">
+      {/* Contenedor principal */}
+      <div
+        className="relative col-start-2 -mt-80 bg-White w-full max-w-3xl rounded-lg shadow-lg p-5
+         flex-wrap grow"
+      >
+        <div className="flex relative items-center gap-2 mb-6">
+          <img src={iconstar} alt="Star icon" width={35} />
+          <h1 className="text-3xl font-extrabold text-Purple-950">FAQs</h1>
+        </div>
 
-          <div className="bg-White w-140 h-110 flex rounded-md self-center-safe shadow-purple-300/50 shadow-2xl   ">
-            <div className=" flex relative text-Purple-950 text-5xl ">
-              <img
-                src={iconstar}
-                alt="imagen of the start"
-                width={40}
-                className="flex relative -top-[150px]  
-                "
-              />
-              {/*title*/}
-              <h1 className="relative ">
-                FAQs
-              </h1>
-            </div>
+        {/* Preguntas (acordeón) */}
+        <div className="space-y-4">
+          {faqs.map((item) => (
+            <div key={item.id} className="border-b border-Purple-100 pb-4">
+              <button
+                className="w-full flex justify-between items-center text-md text-Purple-950
+                 font-semibold hover:text-Purple-400 transition active:hover:text-Purple-200 cursor-pointer p-2"
+                onClick={() => handleItemClick(item.id)}
+              >
+                {item.question}
+                <img
+                  src={openItem === item.id ? iconminus : iconplus}
+                  alt="Toggle icon"
+                  className="w-10 h-10"
+                />
+              </button>
 
-          </div>
-          {/*letter and questions*/}
-          <button className="justify-center justify-items-center  absolute text-Purple-950 ">
-            <p className="flex gap-10 items-center p-2">
-              What is Frontend Mentor, and how will it help me?
-              <img src={iconplus} alt="icono de mas +" />
-            </p>
-            {/*fag-answer*/}
-            <div className="text-justify  text-Purple-600 font-medium " >
-              Frontend Mentor offers realistic coding challenges to help <br /> developers improve their
-              frontend coding skills with projects in <br /> HTML, CSS, and JavaScript. It's suitable for
-              all levels and ideal <br />  for portfolio building.
+              {/* Respuesta */}
+              <div
+                className={`overflow-hidden transition-all duration-300 ${
+                  openItem === item.id ? "max-h-40 mt-2" : "max-h-0"
+                }`}
+              >
+                <p className="text-Purple-600 text-sm leading-relaxed">
+                  {item.answer}
+                </p>
+              </div>
             </div>
-          </button>
- <br />
-          <button className="justify-center justify-items-center absolute text-Purple-950 top-[190px]">
-            <p className="flex gap-18 self-center items-center "> Is Frontend Mentor Free?
-              <img src={iconplus} alt="icono de mas +" />
-            </p>
-            </button>
-            {/*fag-answer
-            <div  className="text-justify  text-Purple-600 font-medium" >
-              Yes, Frontend Mentor offers both free and premium coding
-              challenges,  <br /> with the free option providing access to a range of projects<br/>suitable for all skill levels.
-            </div>
-          
-          {/* 
-          <button className="justify-center justify-items-center  absolute text-Purple-950 ">
-            <p> Can I use Frontend Mentor projects in my portfolio?
-              <img src={iconplus} alt="icono de mas +" />
-            </p>
-            {/*fag-answer
-            <div>
-              Yes, Frontend Mentor offers both free and premium coding challenges, with the free
-              option providing access to a range of projects suitable for all skill levels.
-            </div>
-          </button>
-                 */}
+          ))}
         </div>
       </div>
-    </main>
+    </div>
   );
-}
+};
 
 export default App;
